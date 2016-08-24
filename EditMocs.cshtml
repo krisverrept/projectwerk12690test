@@ -1,0 +1,415 @@
+﻿@model Netwerk.Models.Patient
+@using System
+@using System.Drawing
+@using System.Web.Mvc.Html
+@using System.Web.UI.WebControls
+
+@{
+    ViewBag.Title = "EditMocs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="panel panel-primary" style="width: 1300px; height: 800px; overflow: auto">
+
+        <div class="panel-heading">
+
+            <div class="row col-md-offset-1">
+
+                <table>
+
+                    <tr>
+                        <td style="font-size: 24px">Netwerk-Id:</td>
+                        <td style="padding-left: 10px; font-size: 24px; color: yellow">@Html.DisplayFor(m => m.NetwerkId) </td>
+                        <td style="padding-left: 10px; font-size: 24px; color: yellow"> - </td>
+                        <td style="padding-left: 10px; font-size: 24px; color: yellow">@Html.DisplayFor(model => model.FirstName) </td>
+                        <td style="padding-left: 5px; font-size: 24px; color: yellow">@Html.DisplayFor(model => model.LastName) </td>
+                        <td style="padding-left: 10px; font-size: 24px; color: yellow"> - </td>
+                        <td style="padding-left: 10px; font-size: 24px; color: yellow">@Html.DisplayFor(model => model.BirthDate) </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+
+
+        <div class="panel-body" style="width: 1300px; height: 800px;">
+            <ul class="nav nav-pills">
+                <li class="active"><a data-toggle="tab" href="#info">Info</a></li>
+                <li><a data-toggle="pill" href="#verslag">Verslag</a></li>
+                <li><a data-toggle="pill" href="#beeldvorming">Beeldvorming</a></li>
+                <li><a data-toggle="pill" href="#pathologie">Pathologie</a></li>
+                <li><a data-toggle="pill" href="#klinische">Klinische biologie</a></li>
+                <li><a data-toggle="pill" href="#besluit"> Besluit </a></li>
+            </ul>
+
+            <div class="tab-content">
+
+                <div id="info" class="tab-pane fade in active">
+                    <br /><br />
+                    <div class="form">
+                        <div class="row col-md-offset-1">
+                            @Html.Label("Netwerk-Id")
+                            @Html.DisplayFor(m => m.NetwerkId)
+                            @Html.Label("Patiëntennummer")
+                            @Html.DisplayFor(m => m.IntakeNumber)
+                        </div>
+                        <div class="row col-md-offset-1">
+                            @Html.Label("Voornaam")
+                            @Html.DisplayFor(m => m.FirstName)
+                            @Html.Label("Naam")
+                            @Html.DisplayFor(m => m.LastName)
+                        </div>
+                        <div class="row col-md-offset-1">
+                            @Html.Label("Adres")
+                            @Html.DisplayFor(m => m.Address)
+                        </div>
+                        <div class="row col-md-offset-1">
+                            @Html.Label("Postcode")
+                            @Html.DisplayFor(m => m.PostCode)
+                            @Html.Label("Woonplaats")
+                            @Html.DisplayFor(m => m.City)
+                            @Html.Label("Land")
+                            @Html.DisplayFor(m => m.Country)
+                        </div><br />
+                        <div class="row col-md-offset-1">
+                            @Html.Label("Geboortedatum")
+                            @Html.DisplayFor(m => m.BirthDate)
+                            @Html.Label("Overlijdensdatum")
+                            @Html.DisplayFor(m => m.MortalDate)
+                        </div><br />
+                        <div class="row col-md-offset-1">
+                            @Html.Label("Intakecenter")
+                            @Html.DisplayFor(m => m.IntakeCenterId)
+                            @Html.Label("Behandelend arts")
+                            @Html.DisplayFor(m => m.IntakeDoctor)
+                        </div><br />
+                        <div class="row col-md-offset-1">
+                            @Html.Label("Rijksregisternummer")
+                            @Html.DisplayFor(m => m.NationalNumber)
+                            @Html.Label("Mutualiteit")
+                            @Html.DisplayFor(m => m.HealthFund)
+                        </div><br />
+                    </div>
+                    <div class="col-md-offset-1">
+                        <p>
+                            <i>Patiënt is geregistreerd op @DateTime.Now </i>
+                        </p>
+                    </div>
+                </div>
+
+                <div id="verslag" class="tab-pane fade">
+                    <br /><br />
+                    <div class="form-horizontal">
+                        <div class="form-group row" style="padding-left: 30px">
+                            <div class="col-md-4">
+                                @Html.Label("Type MOC")
+                            </div>
+                            <div class="col-md-4" style="padding-left: 5px">
+                                @Html.Label("Aanvrager MOC")
+                            </div>
+                            <div class="col-md-4" style="padding-left: 5px">
+                                @Html.Label("Aanvrager NET-MOC")
+                            </div>
+                        </div>
+                        <div class="form-group row" style="padding-left: 30px; padding-top: 2px;">
+                            <div class="col-md-4" style="vertical-align: middle">
+                                @Html.DropDownList("TypeMoc", null, "Maak uw keuze", new { @class = "form-control input-sm", @Placeholder = "Type MOC" })
+                            </div>
+                            <div class="col-md-4" style="padding-left: 5px">
+                                @Html.DropDownList("IntakeDoctor", null, "Maak uw keuze", new { @class = "form-control input-sm" })
+                                @Html.ValidationMessageFor(m => m.IntakeDoctor, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-4" style="padding-left: 5px">
+                                @Html.DropDownList("NetworkDoctor", null, "Maak uw keuze", new { @class = "form-control input-sm" })
+                                @Html.ValidationMessageFor(m => m.IntakeDoctor, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row" style="padding-left: 30px">
+                            <div class="col-md-4">
+                                @Html.Label("Datum diagnose")
+                            </div>
+                            <div class="col-md-4" style="padding-left: 5px">
+                                @Html.Label("Initiëel probleem")
+                            </div>
+                        </div>
+                        <div class="form-group row" style="padding-left: 30px">
+                            <div class="col-md-4">
+                                @Html.EditorFor(m => m.IntakeNumber, new { htmlAttributes = new { @class = "form-control iput-sm", @Placeholder = "Incidentie datum" } })
+                            </div>
+
+                            <div class="col-md-8" style="padding-left: 5px">
+                                @Html.EditorFor(m => m.InitialProblem, new { htmlAttributes = new { @class = "form-control iput-sm", @Placeholder = "Initiëel Probleem" } })
+                            </div>
+                        </div>
+                        <div class="form-group row" style="padding-left: 30px">
+                            <div class="col-md-4">
+                                @Html.Label("Medische voorgeschiedenis")
+                            </div>
+                            <div class="col-md-4" style="padding-left: 5px">
+                                @Html.Label("Oncologische voorgeschiedenis")
+                            </div>
+                            <div class="col-md-4" style="padding-left: 5px">
+                                @Html.Label("Huidige ziektegeschiedenis")
+                            </div>
+                        </div>
+                        <div class="form-group row" style="padding-left: 30px">
+                            <div class="col-md-4">
+                                @Html.TextAreaFor(m => m.MedicalHistory, 5, 600, null)
+                            </div>
+                            <div class="col-md-4" style="padding-left: 5px">
+                                @Html.TextAreaFor(m => m.OncologyHistory, 5, 600, null)
+                            </div>
+                            <div class="col-md-4" style="padding-left: 5px">
+                                @Html.TextAreaFor(m => m.CurrentMedicalDiagnose, 5, 600, null)
+                            </div>
+                        </div>
+
+                        <div class="form-group row" style="padding-left: 30px">
+                            <div class="col-md-3">
+                                @Html.Label("ECOG")
+                            </div>
+                            <div class="col-md-3" style="padding-left: 5px">
+                                @Html.Label("Functionele")
+                            </div>
+                            <div class="col-md-3" style="padding-left: 5px">
+                                @Html.Label("Primaire tumor")
+                            </div>
+                            <div class="col-md-3" style="padding-left: 5px">
+                                @Html.Label("Histology primaire tumor")
+                            </div>
+                        </div>
+                        <div class="form-group row" style="padding-left: 30px">
+                            <div class="col-md-3">
+                                @Html.DropDownList("GradeECOG", null, "Maak uw keuze", new { @class = "form-control input-sm" })
+                            </div>
+                            <div class="col-md-3" style="padding-left: 5px">
+                                @Html.DropDownList("ListFS", null, "Maak uw keuze", new { @class = "form-control input-sm" })
+                            </div>
+                            <div class="col-md-3" style="padding-left: 5px">
+                                @Html.DropDownList("ListPS", null, "Maak uw keuze", new { @class = "form-control input-sm" })
+                            </div>
+                            <div class="col-md-3" style="padding-left: 5px">
+                                @Html.DropDownList("ListHS", null, "Maak uw keuze", new { @class = "form-control input-sm" })
+                            </div>
+                        </div>
+                        <div class="form-group row" style="padding-left: 30px">
+                            <div class="col-md-3">
+                                @Html.Label("Reeds uitgevoerde therapie")
+                            </div>
+                        </div>
+                        <div class="form-group row" style="padding-left: 30px">
+                            <div class="col-md-3">
+                                @Html.TextAreaFor(m => m.TherapyDone, 5, 1000, null)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-2 col-md-offset-2">
+                                <input type="submit" value="Opslaan" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="beeldvorming" class="tab-pane fade">
+                    <br /><br />
+                    <input id="addMbv" type="button" value="Toevoegen" class="btn-default" />
+                    <table id="MyTable2" class="col-md-offset-1">
+                        <tr>
+                            <td class="col-md-2" style="padding-left: 30px">
+                                @Html.DropDownList("Mbv", null, "Medische Beeldvorming", new { @class = "form-control input-sm" })
+                            </td>
+                            <td class="col-md-2">
+                                @Html.EditorFor(m => m.MbvDate, new { htmlAttributes = new { @class = "form-control input-sm", @Placeholder = "Datum" } })
+                            </td>
+                            <td class="col-md-2">
+                                @Html.EditorFor(m => m.MbvConclusion, new { htmlAttributes = new { @class = "form-control input-sm", @Placeholder = "Conclusie" } })
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+
+                <div id="pathologie" class="tab-pane fade">
+                    <br /><br />
+                    <div class="container">
+                        <div class="row col-md-offset-1">
+
+                        </div><br />
+                        <input id="addBtn" type="button" value="Toevoegen" />
+                        <table id="MyTable" class="table-condensed">
+                            <tr>@Html.Label("Ptnm")</tr>
+                            <tr>
+                                <td class="col-md-2" style="padding-left: 30px">@Html.Label("Datum") </td>
+                                <td class="col-md-1">@Html.Label("Pt") </td>
+                                <td class="col-md-1">@Html.Label("Pn") </td>
+                                <td class="col-md-1">@Html.Label("Pm") </td>
+                            <tr>
+                            <tr>
+                                <td class="col-md-2" style="padding-left: 30px">@Html.EditorFor(m => m.PtnmDate, new { htmlAttributes = new { @class = "form-control input-sm", @Placeholder = "Datum" } }) </td>
+                                <td class="col-md-1">@Html.DropDownList("ListTnms", null, "Pt", new { @class = "form-control input-sm" }) </td>
+                                <td class="col-md-1">@Html.DropDownList("ListTnms", null, "Pn", new { @class = "form-control input-sm" }) </td>
+                                <td class="col-md-1">@Html.DropDownList("ListTnms", null, "Pm", new { @class = "form-control input-sm" }) </td>
+                            <tr>
+                        </table>
+
+                        <div class="collapse">
+                            <table class="col-md-offset-1 table-bordered">
+                                <tr>
+                                    <td class="col-sm-2">Ki67</td>
+                                    <td class="col-sm-1 text-center">#||# %</td>
+                                    <td class="col-sm-2">Mitosen/HPF</td>
+                                    <td class="col-sm-1 text-center">#||#</td>
+                                    <td class="col-sm-2">Synaptofysine</td>
+                                    <td class="col-sm-1 text-center">#||#</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-sm-2">CD56</td>
+                                    <td class="col-sm-1 text-center">#||#</td>
+                                    <td class="col-sm-2">Chromogranine A</td>
+                                    <td class="col-sm-1 text-center">#||#</td>
+                                    <td class="col-sm-2">NSE</td>
+                                    <td class="col-sm-1 text-center">#||#</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-sm-2">Cytokeratine</td>
+                                    <td class="col-sm-1 text-center">#||#</td>
+                                    <td class="col-sm-2">Angio-invasie</td>
+                                    <td class="col-sm-1 text-center">#||#</td>
+                                    <td class="col-sm-2">Lymfe-invasie</td>
+                                    <td class="col-sm-1 text-center">#||#</td>
+                                </tr>
+                            </table>
+                            <br>
+                        </div>
+                    </div>
+                    <div id="klinische" class="tab-pane fade">
+                      <br/><br/>
+                        <div class="form">
+                            <div class="row col-md-offset-1">
+                                @Html.Label("Ctnm")
+                            </div><br />
+                            <table class="col-md-offset-1 table-bordered">
+                                <tr>
+                                    <td class="col-sm-1">CgA</td>
+                                    <td class="col-sm-1">Datum</td>
+                                    <td class="col-sm-1 text-center">#||# %</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-sm-1">NSE</td>
+                                    <td class="col-sm-1">Datum</td>
+                                    <td class="col-sm-1 text-center">#||# %</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-sm-1">Gastrine</td>
+                                    <td class="col-sm-1">Datum</td>
+                                    <td class="col-sm-1 text-center">#||# %</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-sm-1">Insuline</td>
+                                    <td class="col-sm-1">Datum</td>
+                                    <td class="col-sm-1 text-center">#||# %</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-sm-1">Andere</td>
+                                    <td class="col-sm-1">Datum</td>
+                                    <td class="col-sm-1 text-center">#||# %</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="besluit" class="tab-pane fade">
+                        <h4>Besluit</h4>
+                        <div class="form">
+                            <div class="row col-md-offset-1">
+                                @Html.Label("Functioneel")
+                            </div>
+                            <div class="row col-md-offset-1">
+                                @Html.Label("Primaire tumor")
+                            </div>
+                            <div class="row col-md-offset-1">
+                                @Html.Label("WHO gradering")
+                            </div>
+                            <div class="row col-md-offset-1">
+                                @Html.Label("Incidencedatum")
+                            </div>
+                            <div class="row col-md-offset-1">
+                                @Html.Label("Reeds uitgevoerde handelingen")
+                            </div>
+                            <div class="row col-md-offset-1">
+                                @Html.Label("Prognose")
+                            </div><br />
+                            <div class="row col-md-offset-1">
+                                <p>
+                                    Concreet behandelingsplan op korte en lange termijn met motivatie, rekening houdend met
+                                    met medische maar ook psychische en sociale argumenten:
+                                </p>
+                                @Html.Label("#||#")
+                            </div><br />
+                            <div class="row col-md-offset-1">
+                                <p>
+                                    Naam van de geneesheer die, tijdens een afzonderlijk overleg, toelichting van de diagnose
+                                    en van het voorstel van aanvullende onderzoeken, opvolging en behandelingsplan aan de patiënt geeft
+                                    volgens het verslag van het voorafgaand multidisciplinair oncologisch consult:
+                                </p>
+                                @Html.Label("#||#")
+                            </div><br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div>
+        @Html.ActionLink("Terug naar overzicht", "IndexMocs")
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $(".btn-primary")
+                .click(function () {
+                    $(".collapse").collapse('toggle');
+                });
+        });
+
+        function myFunction() {
+            var table = document.getElementById("MyTable");
+            var row = table.insertRow(0);
+        }
+
+        $("#addPath")
+            .on("click",
+               function () {
+                   $('#PtnmDate').clone().removeAttr("id").insertAfter("#PtnmDate");
+                   $('#ListTnm').clone().removeAttr("id").insertAfter("#ListTnm");
+                   $('#ListTnm').clone().removeAttr("id").insertAfter("#ListTnm");
+                   $('#ListTnm').clone().removeAttr("id").insertAfter("#ListTnm");
+               });
+
+        function myFunction() {
+            var table = document.getElementById("MyTable2");
+            var rowCount = table.rows.length;
+            var row = table.insertRow(rowCount);
+
+        }
+
+        $("#addMbv")
+            .on("click",
+                function () {
+                    $('#Mbv').clone().removeAttr("id").insertAfter("#Mbv");
+                    $('#MbvDate').clone().removeAttr("id").insertAfter("#MbvDate");
+                    $('#MbvConclusion').clone().removeAttr("id").insertAfter("#MbvConclusion");
+                });
+
+
+        //<button id="result1" type="button" class="btn btn-primary collapsed" data-toggle="collapse" data-target="#demo1">
+        //                                   <span class="glyphicon glyphicon-collapse-down"></span> Resultaten
+        //                               </button>
+
+    </script>
+}

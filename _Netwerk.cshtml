@@ -1,0 +1,98 @@
+﻿<!-- Navigatie - Menu -->
+<link href="~/Content/netwerk.css" rel="stylesheet" />
+
+<div id="PageWrapper">
+    <!-- Header -->
+    <div id="header">
+        <div id="logo">
+            <img src="~/Content/images/Netwerk/logoNETwerk.png" alt="" />
+        </div>
+    </div>
+    <aside id="Sidebar">
+       <asp:Label ID="cTime" ClientIDMode="Static" Font-Bold="true" />
+    </aside>
+    <div id="main_menu">
+        <ul class="root nav">
+            <li>
+                <ul>
+                    <li class="color selected">
+                        <a href="@Url.Action("Index", "Home")" title="Home">Home</a>
+                    </li>
+                    <li class="color1">
+                        <a href="@Url.Action("OverOns", "Netwerk")" >Over ons</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <ul>
+                    <li class="color7">
+                        <a href="@Url.Action("IndexPatients", "Patients")" title="Registratie">Registratie</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <ul>
+                    <li class="color2">
+                        <a href="@Url.Action("Partners", "Netwerk")" >Partners</a>
+                    </li>
+                    <li class="color3">
+                        <a href="@Url.Action("Richtlijnen", "Netwerk")">Richtlijnen</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <ul>
+                    <li class="color7">
+                        <a href="@Url.Action("IndexMocs", "Patients")" title="FollowUp">Opvolging</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <ul>
+                    <li class="color13">
+                        <a href="@Url.Action("Overzicht", "Netwerk")">Overzicht</a>
+                    </li>
+                    <li class="color4">
+                        <a href="@Url.Action("Documentatie", "Netwerk")">Documentatie</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <ul>
+                    <li class="color7">
+                        <a href="@Url.Action("Admin", "Netwerk")">Admin</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <ul>
+                   
+                    <li class="color0">
+                        <a href="@Url.Action("Vragen", "Netwerk")">Vragen</a>
+                    </li>
+                    <li class="color6">
+                        <a href="@Url.Action("Contact", "Home")">Contact</a>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            DisplayCurrentTime();
+        });
+
+        function DisplayCurrentTime() {
+            var dt = new Date();
+            var refresh = 1000; //Refresh rate 1000 milli sec means 1 sec
+            var cDate = dt.getDate() + "/" + (dt.getMonth() + 1) + "/" + dt.getFullYear();
+            document.getElementById('cTime').innerHTML = cDate + " – " + dt.toLocaleTimeString();
+            window.setTimeout('DisplayCurrentTime()', refresh);
+            }
+
+    </script>
+</div>

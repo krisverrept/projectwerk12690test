@@ -1,0 +1,140 @@
+﻿@using System.Web.Mvc.Html
+@model Netwerk.Models.Patient
+
+@{
+    ViewBag.Title = "Wijzig patient";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="panel panel-default">
+        <div class="panel-heading" style="padding-left: 50px">
+            <h4><i><b>Gegevens patiënt wijzigen</b></i></h4>
+        </div>
+
+        <div class="panel-body">
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+
+                <div class="form-group row" style="padding-left: 150px">
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.NationalNumber, new {htmlAttributes = new {@class = "form-control iput-sm", @Placeholder = "Rijksregister"}})
+                        @Html.ValidationMessageFor(model => model.NationalNumber, "", new {@class = "text-danger"})
+                    </div>
+
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.FirstName, new {htmlAttributes = new {@class = "form-control input-sm", @Placeholder = "Voornaam"}})
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new {@class = "text-danger"})
+                    </div>
+
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.LastName, new {htmlAttributes = new {@class = "form-control input-sm", @Placeholder = "Familienaam"}})
+                        @Html.ValidationMessageFor(model => model.LastName, "", new {@class = "text-danger"})
+                    </div>
+                </div>
+
+                <div class="form-group row" style="padding-left: 150px">
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.Address, new {htmlAttributes = new {@class = "form-control input-sm", @Placeholder = "Adres"}})
+                        @Html.ValidationMessageFor(model => model.Address, "", new {@class = "text-danger"})
+                    </div>
+                </div>
+
+                <div class="form-group row" style="padding-left: 150px">
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.PostCode, new {htmlAttributes = new {@class = "form-control input-sm", @Placeholder = "Postcode"}})
+                        @Html.ValidationMessageFor(model => model.PostCode, "", new {@class = "text-danger"})
+                    </div>
+
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.City, new {htmlAttributes = new {@class = "form-control input-sm", @Placeholder = "Woonplaats"}})
+                        @Html.ValidationMessageFor(model => model.City, "", new {@class = "text-danger"})
+                    </div>
+
+                    <div class="editor-field col-md-3">
+                        @Html.DropDownList("Country", null, "Land", new { @class = "form-control input-sm" })
+                        @Html.ValidationMessageFor(model => model.Country, "", new {@class = "text-danger"})
+                    </div>
+                </div>
+
+                <div class="form-group row" style="padding-left: 150px">
+
+                    <div class="editor-field col-md-3">
+                        @Html.DropDownList("GenderId", null, "Geslacht", new {@class = "form-control input-sm"})
+                        @Html.ValidationMessageFor(model => model.GenderId)
+                    </div>
+
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { @class = "form-control input-sm", @Placeholder = "Geboortedatum" } })
+                        @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.MortalDate, new { htmlAttributes = new { @class = "form-control input-sm", @Placeholder = "Overlijdensdatum" } })
+                        @Html.ValidationMessageFor(model => model.MortalDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row" style="padding-left: 150px">
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.PatientPhone, new { htmlAttributes = new { @class = "form-control input-sm", @Placeholder = "Telefoon" } })
+                        @Html.ValidationMessageFor(model => model.PatientPhone, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.PatientMail, new { htmlAttributes = new { @class = "form-control input-sm", @Placeholder = "Email" } })
+                        @Html.ValidationMessageFor(model => model.PatientMail, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row" style="padding-left: 150px">
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.HomeDoctor, new { htmlAttributes = new { @class = "form-control input-sm", @Placeholder = "Huisarts" } })
+                        @Html.ValidationMessageFor(model => model.HomeDoctor, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.ContactHomeDoctor, new { htmlAttributes = new { @class = "form-control input-sm", @Placeholder = "Contact huisarts" } })
+                        @Html.ValidationMessageFor(model => model.ContactHomeDoctor, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row" style="padding-left: 150px">
+                    <div class="editor-field col-md-3">
+                        @Html.DropDownList("IntakeCenterId", null, "Behandelend ziekenhuis", new { @class = "form-control input-sm" })
+                        @Html.ValidationMessageFor(model => model.IntakeCenters)
+                    </div>
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.IntakeNumber, new { htmlAttributes = new { @class = "form-control input-sm", @Placeholder = "Patiëntennummer" } })
+                        @Html.ValidationMessageFor(model => model.IntakeNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row" style="padding-left: 150px">
+
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.IntakeDoctor, new { htmlAttributes = new { @class = "form-control input-sm", @Placeholder = "Behandelend arts" } })
+                        @Html.ValidationMessageFor(model => model.IntakeDoctor, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.IntakeDoctorMail, new { htmlAttributes = new { @class = "form-control input-sm", @Placeholder = "Contact arts" } })
+                        @Html.ValidationMessageFor(model => model.IntakeDoctorMail, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-2 col-md-offset-2">
+                        <input type="submit" value="Opslaan" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        @Html.ActionLink("Terug naar overzicht", "IndexPatients")
+    </div>
+}

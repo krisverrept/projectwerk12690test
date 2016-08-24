@@ -1,0 +1,90 @@
+﻿@model  IPagedList<Patient>
+@using Netwerk.Models
+@using PagedList
+@using PagedList.Mvc
+
+
+@{
+    ViewBag.Title = "Index Mocs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("IndexMocs", "Patients", FormMethod.Get))
+{
+    <div class="form-horizontal">
+        <div class="row">
+
+            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control col-md-2" })
+            <input type="submit" class="btn btn-primary" value="zoek" />
+            &nbsp;
+            @Html.ActionLink("Create", "CreateMocs", "Patients", new { @class = "btn btn-primary" })
+
+        </div>
+    </div>
+    <br />
+}
+
+
+<table class="table table-striped">
+    <tr>
+      <th>
+            @Html.ActionLink("Netwerk-ID", "IndexMocs", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>
+            Type Moc
+        </th>
+        <th>
+            Datum
+        </th>
+        <th>
+            Voornaam
+        </th>
+        <th>
+            @Html.ActionLink("Familienaam", "IndexMocs", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Geboortedatum", "IndexMocs", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Intake-centrum", "IndexMocs", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+           <td>
+                @Html.DisplayFor(modelItem => item.NetwerkId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MocTypeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MocDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthDate)
+            </td>
+            <td>
+                @ViewBag.IntakeCenterId
+            </td>
+
+            <td>
+                @Html.ActionLink("Selecteer", "EditMocs", new { id = item.NetwerkId }, new { @class = "btn btn-primary" })
+            </td>
+        </tr>
+    }
+</table>
+<br />
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("IndexMocs",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

@@ -1,0 +1,88 @@
+﻿@model IPagedList<Patient>
+@using Netwerk.Models
+@using PagedList;
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Index Patients";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("IndexPatients", "Patients", "FormMethod.Get"))
+{
+    <div class="form-horizontal">
+        <div class="row">
+           
+            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new {@class = "form-control col-md-2"})
+            <input type="submit" class="btn btn-primary" value="zoek"/>
+            &nbsp;
+            @Html.ActionLink("Creëer", "CreatePatients", "Patients", new { @class = "btn btn-primary" })
+         
+        </div>
+    </div>
+    <br />
+}
+<table class="table table-striped table-bordered">
+    <tr>
+        <th>
+            @Html.ActionLink("Netwerk-ID", "IndexPatients", new {sortOrder = ViewBag.NameSortParm})
+        </th>
+        <th>
+            Rijksregister
+        </th>
+        <th>
+            Voornaam
+        </th>
+        <th>
+            @Html.ActionLink("Familienaam", "IndexPatients", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>
+            Geboortedatum
+        </th>
+        <th>
+            @Html.ActionLink("Intakecenter", "IndexPatients", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+
+        <th>Acties</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NetwerkId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NationalNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IntakeCenterId)
+               <td>
+
+                @Html.ActionLink("Wijzig", "EditPatients", new { id = item.NetwerkId }, new { @class = "btn btn-primary" })
+
+                @Html.ActionLink("MOC1", "EditMocs", "Patients", new { id = item.NetwerkId }, new { @class = "btn btn-success" })
+                @Html.ActionLink("MOC2", "EditMocs", "Patients", new { id = item.NetwerkId }, new { @class = "btn btn-warning" })
+
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+        Pagina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("IndexPatients",
+new { page, SortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+

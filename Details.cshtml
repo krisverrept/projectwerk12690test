@@ -1,0 +1,202 @@
+﻿@model Netwerk.Models.Moc
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Moc</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MocDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MocDate)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.MocTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MocTypeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NetwerkId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NetwerkId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CtId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CtId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CnId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CnId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CmId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CmId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PtId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PtId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PnId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PnId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PmId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PmId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FsValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FsValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PtValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PtValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HsValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HsValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TreatmentDecision)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TreatmentDecision)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TherapyDone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TherapyDone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MedicalHistory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MedicalHistory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OncologyHistory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OncologyHistory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentMedicalDiagnose)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentMedicalDiagnose)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MbvValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MbvValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MbvDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MbvDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MbvConclusion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MbvConclusion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

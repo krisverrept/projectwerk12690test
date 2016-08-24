@@ -1,0 +1,348 @@
+﻿@model Netwerk.Models.Patient
+@using System.Web.Mvc.Html
+@using Netwerk.Models
+        
+@{
+    ViewBag.Title = "CreateMocs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+    {
+    @Html.AntiForgeryToken()
+<div class="panel panel-primary">
+  
+        <div class="panel-heading">
+
+            <div class="row col-md-offset-1">
+
+                <table>
+                 
+                      <tr>
+                          <td style="font-size: 24px">Netwerk-Id:</td>
+                          <td style="padding-left: 10px; font-size: 20px">@Html.TextBoxFor(m => m.NetwerkId, new {@readonly = "readonly"}) </td>
+                          <td style="padding-left: 10px; font-size: 20px"> - </td>
+                          <td style="padding-left: 10px; font-size: 20px">@Html.LabelFor(model => model.FirstName) </td>
+                          <td style="padding-left: 5px; font-size: 20px">@Html.LabelFor(model => model.LastName) </td>
+                          <td style="padding-left: 10px; font-size: 20px"> - </td>
+                          <td style="padding-left: 10px; font-size: 20px">@Html.LabelFor(model => model.BirthDate) </td>
+                      </tr>
+              
+                </table>
+            </div>
+        </div>
+
+
+            <div class="panel-body">
+                <ul class="nav nav-pills">
+                    <li class="active"><a data-toggle="tab" href="#info">Info</a></li>
+                    <li><a data-toggle="pill" href="#verslag">Verslag</a></li>
+                    <li><a data-toggle="pill" href="#beeldvorming">Beeldvorming</a></li>
+                    <li><a data-toggle="pill" href="#pathologie">Pathologie</a></li>
+                    <li><a data-toggle="pill" href="#klinische">Klinische biologie</a></li>
+                    <li><a data-toggle="pill" href="#besluit"> Besluit </a></li>
+                </ul>
+
+                <div class="tab-content">
+
+                    <div id="info" class="tab-pane fade in active">
+                        <h4>informatie patiënt</h4>
+                        <div class="form">
+                            <div class="row col-md-offset-1">
+                                @Html.Label("Netwerk-Id")
+                                @*@Html.DisplayFor(modelItem => item.Patients.NetwerkId)*@
+                                @Html.Label("Patiëntennummer")
+                                @*@Html.DisplayFor(modelItem => item.Patients.IntakeNumber)*@
+                            </div>
+                            <div class="row col-md-offset-1">
+                                @Html.Label("Naam")
+                                @*@Html.DisplayFor(modelItem => item.Patients.LastName)*@
+                                @Html.Label("Voornaam")
+                                @*@Html.DisplayFor(modelItem => item.Patients.FirstName)*@
+                            </div>
+                            <div class="row col-md-offset-1">
+                                @Html.Label("Adres")
+                                @*@Html.DisplayFor(modelItem => item.Patients.Address)*@
+                            </div>
+                            <div class="row col-md-offset-1">
+                                @Html.Label("Postcode")
+                                @*@Html.DisplayFor(modelItem => item.Patients.PostCode)*@
+                                @Html.Label("Woonplaats")
+                                @*@Html.DisplayFor(modelItem => item.Patients.City)*@
+                                @Html.Label("Land")
+                                @*@Html.DisplayFor(modelItem => item.Patients.Country)*@
+                            </div><br />
+                            <div class="row col-md-offset-1">
+                                @Html.Label("Geboortedatum")
+                                @Html.Label("Overlijdensdatum")
+                            </div><br />
+                            <div class="row col-md-offset-1">
+                                @Html.Label("Intakecenter")
+                                @Html.Label("Behandelend arts")
+                            </div><br />
+                            <div class="row col-md-offset-1">
+                                @Html.Label("Rijksregisternummer")
+                                @Html.Label("Mutualiteit")
+                            </div><br />
+                        </div>
+                        <div class="col-md-offset-1">
+                            <p>
+                                <i>Patiënt is geregistreerd op + timestamp</i>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="verslag" class="tab-pane fade">
+                        <h4>Verslag</h4>
+                        <div class="row col-md-offset-1">
+                            @Html.Label("type Moc")
+                        </div>
+                        <div class="form">
+                            <div class="row col-md-offset-1">
+                                @Html.Label("Aanvragende arts lokale MOC")
+                                @Html.Label("Aanvragende arts NET-MOC")
+                            </div><br />
+                            <div class="row col-md-offset-1">
+                                @Html.Label("Initiële probleemstelling")
+                                @Html.Label("Incidencedatum")
+                            </div>
+                            <div class="row col-md-offset-1">
+                                @Html.Label("Medische voorgeschiedenis")
+                            </div>
+                            <div class="row col-md-offset-1">
+                                @Html.Label("Oncologische voorgeschiedenis")
+                            </div>
+                            <div class="row col-md-offset-1">
+                                @Html.Label("Huidige ziektegeschiedenis")
+                            </div>
+                            <div class="row col-md-offset-1">
+                                @Html.Label("ECOG")
+                            </div>
+                            <div class="row col-md-offset-1">
+                                @Html.Label("Primaire tumor")
+                            </div>
+                            <div class="row col-md-offset-1">
+                                @Html.Label("Histology primaire tumor")
+                            </div>
+                            <div class="row col-md-offset-1">
+                                @Html.Label("Functionele")
+                            </div>
+                            <div class="row col-md-offset-1">
+                                @Html.Label("Reeds uitgevoerde therapie")
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="beeldvorming" class="tab-pane fade">
+                        <h4>Beeldvorming</h4>
+                        <table class="col-md-offset-1">
+                            <tr>
+                                <td class="col-sm-1">CT-Scan thorax/abdomen</td>
+                                <td class="col-sm-1">Datum</td>
+                                <td class="col-sm-1">Conclusie</td>
+                            </tr>
+                            <tr>
+                                <td class="col-sm-1">Octreo-scan / 68Ga-DOTATOC</td>
+                                <td class="col-sm-1">Datum</td>
+                                <td class="col-sm-1">Conclusie</td>
+                            </tr>
+                            <tr>
+                                <td class="col-sm-1">FDG-PET/CT</td>
+                                <td class="col-sm-1">Datum</td>
+                                <td class="col-sm-1">Conclusie</td>
+                            </tr>
+                            <tr>
+                                <td class="col-sm-1">MRI</td>
+                                <td class="col-sm-1">Datum</td>
+                                <td class="col-sm-1">Conclusie</td>
+                            </tr>
+                            <tr>
+                                <td class="col-sm-1">Echografie</td>
+                                <td class="col-sm-1">Datum</td>
+                                <td class="col-sm-1">Conclusie</td>
+                            </tr>
+                            <tr>
+                                <td class="col-sm-1">Echo-endo</td>
+                                <td class="col-sm-1">Datum</td>
+                                <td class="col-sm-1">Conclusie</td>
+                            </tr>
+                            <tr>
+                                <td class="col-sm-1">Endoscopie</td>
+                                <td class="col-sm-1">Datum</td>
+                                <td class="col-sm-1">Conclusie</td>
+                            </tr>
+                            <tr>
+                                <td class="col-sm-1">Andere</td>
+                                <td class="col-sm-1">Datum</td>
+                                <td class="col-sm-1">Conclusie</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div id="pathologie" class="tab-pane fade">
+                        <h4>Pathologie</h4>
+                        <div class="container">
+                            <div class="row col-md-offset-1">
+                                @Html.Label("Ptnm")
+                            </div><br />
+                            <input id="addBtn" type="button" value="Toevoegen" />
+                            <table id="myTable" class="table-condensed">
+                                <tr>
+                                    <td>
+                                        <button id="result1" type="button" class="btn btn-primary collapsed" data-toggle="collapse" data-target="#demo1">
+                                            <span class="glyphicon glyphicon-collapse-down"></span> Resultaten
+                                        </button>
+                                    </td>
+                                    <td>Onderzoek: <input type="text" /></td>
+                                    <td>Datum: <input type="text" /></td>
+                                    <td>Conclusie: <input type="text" /></td>
+                                    @*<td><button onclick="myFunction()" class="glyphicon glyphicon-plus"></button></td>*@
+                                </tr>
+                            </table>
+
+
+
+                            <div class="collapse">
+                                <table class="col-md-offset-1 table-bordered">
+                                    <tr>
+                                        <td class="col-sm-2">Ki67</td>
+                                        <td class="col-sm-1 text-center">#||# %</td>
+                                        <td class="col-sm-2">Mitosen/HPF</td>
+                                        <td class="col-sm-1 text-center">#||#</td>
+                                        <td class="col-sm-2">Synaptofysine</td>
+                                        <td class="col-sm-1 text-center">#||#</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-sm-2">CD56</td>
+                                        <td class="col-sm-1 text-center">#||#</td>
+                                        <td class="col-sm-2">Chromogranine A</td>
+                                        <td class="col-sm-1 text-center">#||#</td>
+                                        <td class="col-sm-2">NSE</td>
+                                        <td class="col-sm-1 text-center">#||#</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-sm-2">Cytokeratine</td>
+                                        <td class="col-sm-1 text-center">#||#</td>
+                                        <td class="col-sm-2">Angio-invasie</td>
+                                        <td class="col-sm-1 text-center">#||#</td>
+                                        <td class="col-sm-2">Lymfe-invasie</td>
+                                        <td class="col-sm-1 text-center">#||#</td>
+                                    </tr>
+                                </table>
+                                <br>
+                            </div>
+                        </div>
+                        <div id="klinische" class="tab-pane fade">
+                            <h4>Klinische biologie</h4>
+                            <div class="form">
+                                <div class="row col-md-offset-1">
+                                    @Html.Label("Ctnm")
+                                </div><br />
+                                <table class="col-md-offset-1 table-bordered">
+                                    <tr>
+                                        <td class="col-sm-1">CgA</td>
+                                        <td class="col-sm-1">Datum</td>
+                                        <td class="col-sm-1 text-center">#||# %</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-sm-1">NSE</td>
+                                        <td class="col-sm-1">Datum</td>
+                                        <td class="col-sm-1 text-center">#||# %</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-sm-1">Gastrine</td>
+                                        <td class="col-sm-1">Datum</td>
+                                        <td class="col-sm-1 text-center">#||# %</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-sm-1">Insuline</td>
+                                        <td class="col-sm-1">Datum</td>
+                                        <td class="col-sm-1 text-center">#||# %</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-sm-1">Andere</td>
+                                        <td class="col-sm-1">Datum</td>
+                                        <td class="col-sm-1 text-center">#||# %</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div id="besluit" class="tab-pane fade">
+                            <h4>Besluit</h4>
+                            <div class="form">
+                                <div class="row col-md-offset-1">
+                                    @Html.Label("Functioneel")
+                                </div>
+                                <div class="row col-md-offset-1">
+                                    @Html.Label("Primaire tumor")
+                                </div>
+                                <div class="row col-md-offset-1">
+                                    @Html.Label("WHO gradering")
+                                </div>
+                                <div class="row col-md-offset-1">
+                                    @Html.Label("Incidencedatum")
+                                </div>
+                                <div class="row col-md-offset-1">
+                                    @Html.Label("Reeds uitgevoerde handelingen")
+                                </div>
+                                <div class="row col-md-offset-1">
+                                    @Html.Label("Prognose")
+                                </div><br />
+                                <div class="row col-md-offset-1">
+                                    <p>
+                                        Concreet behandelingsplan op korte en lange termijn met motivatie, rekening houdend met
+                                        met medische maar ook psychische en sociale argumenten:
+                                    </p>
+                                    @Html.Label("#||#")
+                                </div><br />
+                                <div class="row col-md-offset-1">
+                                    <p>
+                                        Naam van de geneesheer die, tijdens een afzonderlijk overleg, toelichting van de diagnose
+                                        en van het voorstel van aanvullende onderzoeken, opvolging en behandelingsplan aan de patiënt geeft
+                                        volgens het verslag van het voorafgaand multidisciplinair oncologisch consult:
+                                    </p>
+                                    @Html.Label("#||#")
+                                </div><br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> }
+    }
+</div>
+    }
+    }
+
+<div>
+    @Html.ActionLink("Terug naar overzicht", "IndexMocs")
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(".btn-primary").click(function () {
+            $(".collapse").collapse('toggle');
+        });
+    });
+    function myFunction() {
+        var table = document.getElementById("myTable");
+        var row = table.insertRow(0);
+    }
+    $("#addBtn").on("click", function () {
+
+        var newRow = "<tr>" +
+            "<td><button type='button' value='Resultaat' class='btn btn-primary collapsed'><span class='glyphicon glyphicon-collapse-down' +" +
+            "data-toggle='collapse' data-target='#demo1' />Resultaten</button </td>" +
+            "<td>Onderzoek: <input type='text' </td>" +
+            "<td>Datum: <input type='text' /></td>" +
+            "<td>Conslusie: <input type='text' /></td>" +
+            "</tr>";
+
+        $("table").append(newRow);
+
+    });
+    //<button id="result1" type="button" class="btn btn-primary collapsed" data-toggle="collapse" data-target="#demo1">
+    //                                   <span class="glyphicon glyphicon-collapse-down"></span> Resultaten
+    //                               </button>
+  
+</script>   
